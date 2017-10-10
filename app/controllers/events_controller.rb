@@ -1,4 +1,4 @@
-class EventController < ApplicationController
+class EventsController < ApplicationController
   ApplicationController
   before_action :set_event, only: [:show, :edit, :update]
   before_action :authenticate_user!, except: [:show]
@@ -39,12 +39,15 @@ class EventController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+
   def event_params
     params
       .require(:event)
       .permit(
-        :description, :location, :price, :capacity, :inclues_food, :include_drink,
+        :name, :description, :location, :price, :capacity, :includes_food, :includes_drink,
         :starts_at, :end_at, :active
       )
   end
+
+
 end

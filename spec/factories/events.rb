@@ -10,7 +10,6 @@ FactoryGirl.define do
       starts_at DateTime.now+1
       end_at DateTime.now+2
       user { build(:user) }
-      categories dinner
 
     trait :active do
       active true

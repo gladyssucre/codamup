@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010130323) do
+ActiveRecord::Schema.define(version: 20171010183029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_events", id: false, force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "category_id", null: false
+    t.index ["category_id", "event_id"], name: "index_categories_events_on_category_id_and_event_id"
+    t.index ["event_id", "category_id"], name: "index_categories_events_on_event_id_and_category_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "name"
@@ -32,25 +45,6 @@ ActiveRecord::Schema.define(version: 20171010130323) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.string "home_type"
-    t.string "room_type"
-    t.integer "accommodate"
-    t.integer "bedroom_count"
-    t.integer "bathroom_count"
-    t.string "listing_name"
-    t.text "description"
-    t.string "address"
-    t.boolean "has_tv"
-    t.boolean "has_kitchen"
-    t.boolean "has_airco"
-    t.boolean "has_heating"
-    t.boolean "has_internet"
-    t.decimal "price"
-    t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

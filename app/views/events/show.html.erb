@@ -25,6 +25,11 @@
       <li><%= !@event.includes_drink ? "Includes drinks: Yes" : "Includes drinks: No" %></li>
     </ul>
 
+    <h4>Categories</h4>
+    <% @category.each do |category| %>
+      <span class="label label-success"><%= category.name %></span>
+    <% end %>
+
   </div>
 
 </div>

@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 describe "shared/_navbar.html.erb" do
+
+context "When not signed in" do
+
+  it "renders Log In" do
+    render
+    expect(rendered).to have_text "Log In"
+  end
+end
+
+
   before { sign_in user }
 
   context "without profile" do

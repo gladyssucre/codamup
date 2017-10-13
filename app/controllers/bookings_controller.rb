@@ -1,17 +1,15 @@
 class BookingsController < ApplicationController
-  class BookingsController < ApplicationController
+  before_action :authenticate_user!
     def create
-      before_action :authenticate_user!
-      @booking = current_user.bookings.create(booking_params)
-
-      redirect_to @booking.event, notice: "Thank you for booking!"
+      @booking = current_user.bookings.new(booking_params.merge(event_id: params[:event_id]))
+      @booking.set_total_price
+      @booking.save
+      redirect_to @booking.event, notice: "Thank you for your reservation!"
     end
 
     private
 
     def booking_params
-      params.require(:booking).permit(:starts_at, :ends_at, :price, :total, :event_id)
+      params.require(:booking).permit(:price)
     end
   end
-
-end

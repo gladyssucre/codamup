@@ -1,7 +1,8 @@
+Profile.destroy_all
+Booking.destroy_all
 Photo.destroy_all
 Category.destroy_all
 Event.destroy_all
-Profile.destroy_all
 User.destroy_all
 #Categories
 drinks = Category.create(name: "Drinks")
@@ -15,6 +16,12 @@ gladys = User.create(
 miriam = User.create(email: "miriam@codaisseurbnb.com", password: "abcd1234")
 wouter = User.create(email: "wouter@codaisseurbnb.com", password: "abcd1234")
 matt = User.create(email: "matt@codaisseurbnb.com", password: "abcd1234")
+
+
+#Photos
+photo1 = Photo.create!(remote_image_url: "https://res.cloudinary.com/drp9nvz64/image/upload/t_media_lib_thumb/v1507818576/Amsterdam_ft26jx.jpg", event: event1)
+photo2 = Photo.create!(remote_image_url: "https://res.cloudinary.com/drp9nvz64/image/upload/t_media_lib_thumb/v1507818327/DSC09727_pwskbn.jpg", event: event1)
+photo3 = Photo.create!(remote_image_url: "https://res.cloudinary.com/drp9nvz64/image/upload/t_media_lib_thumb/v1507818327/DSC09535_t3hg4a.jpg", event: event2)
 
 #events
 event1= Event.create!(
@@ -47,7 +54,7 @@ event2= Event.create!(
   categories: [dinner, movies]
 )
 
-#Photos
-photo1 = Photo.create!(remote_image_url: "https://res.cloudinary.com/drp9nvz64/image/upload/t_media_lib_thumb/v1507818576/Amsterdam_ft26jx.jpg", event: event1)
-photo2 = Photo.create!(remote_image_url: "https://res.cloudinary.com/drp9nvz64/image/upload/t_media_lib_thumb/v1507818327/DSC09727_pwskbn.jpg", event: event1)
-photo3 = Photo.create!(remote_image_url: "https://res.cloudinary.com/drp9nvz64/image/upload/t_media_lib_thumb/v1507818327/DSC09535_t3hg4a.jpg", event: event2)
+## bookings
+
+Booking.create!(event: event1, user: wouter, price: 50, total: 100, starts_at: 10.days.from_now, ends_at: 12.days.from_now)
+Booking.create!(event: event1, user: matt, price: 50, total: 200, starts_at: 20.days.from_now, ends_at: 24.days.from_now)
